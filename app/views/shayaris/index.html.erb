@@ -1,0 +1,29 @@
+<h1>Listing shayaris</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Category</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shayaris.each do |shayari| %>
+  <tr>
+    <td><%= shayari.title %></td>
+    <td><%= shayari.body %></td>
+    <td><%= shayari.category %></td>
+    <td><%= shayari.user_id %></td>
+    <td><%= link_to 'Show', shayari %></td>
+    <td><%= link_to 'Edit', edit_shayari_path(shayari) %></td>
+    <td><%= link_to 'Destroy', shayari, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shayari', new_shayari_path %>

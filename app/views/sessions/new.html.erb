@@ -1,0 +1,27 @@
+<% content_for(:js_css) do %>
+  <%= stylesheet_link_tag 'login' %>
+  <%= javascript_include_tag 'login' %>
+<% end %>
+<%= form_tag do %>
+  <fieldset>
+  <legend>Please Log In</legend>
+  <span class='error'><%= flash[:alert] %></span>
+  <div class = "field" id = 'user'>
+    <label for="username" >Username:</label>
+    <%= text_field_tag :username, params[:username], :size => 30 %><span class='error' id='error1'></span>
+  </div>
+  <div class = 'field'>
+    <label for="password" >Password:</label>
+    <%= password_field_tag :password, params[:password], :size => 30 %><span class='error' id='error2'></span>
+  </div>
+  <br/>
+  <span class="actions"> 
+	  <%= submit_tag "Login", :onclick => "return validat()" %><span style='clear:both;'></span>
+	</span>
+	<div>
+		<%= link_to("Sign Up", signup_url) %>
+	</div>
+  </fieldset>
+<% end %>
+
+

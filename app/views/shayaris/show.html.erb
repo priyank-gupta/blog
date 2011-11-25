@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @shayari.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @shayari.body %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @shayari.category %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @shayari.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_shayari_path(@shayari) %> |
+<%= link_to 'Back', shayaris_path %>

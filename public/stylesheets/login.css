@@ -1,0 +1,15 @@
+#container > div {
+	margin:auto;
+	width:25%;
+}
+.error {
+	font-size: 12px;
+	color: #b88282;
+}
+#user {
+	padding-bottom: 15px;
+}
+.actions {
+	float: right;
+}
+

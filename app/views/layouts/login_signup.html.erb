@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> SHER-O-SHAYARI Login</title>
+  <%= stylesheet_link_tag 'blog_all'%>
+  <%= yield :js_css %>
+  <%= javascript_include_tag 'rails', 'application', 'controls' %>
+  <%= csrf_meta_tag %>
+</head>
+<body id = 'main'>
+  <div>
+		<h1><span style="color: #700404">S</span><span style="color:#7e1d1d">h</span><span style="color:#8d3636">e</span><span style="color:#9b4f4f">r</span><span style="color:#9b4f4f">-</span><span style="color:#700404">O</span><span style="color:#9b4f4f">-</span><span style="color:#700404">S</span><span style="color:#7e1d1d">h</span><span style="color:#8d3636">a</span><span style="color:#9b4f4f">y</span><span style="color:#a96868">a</span><span style="color:#b88282">r</span><span style="color:#c69b9b">i</span></h1>
+		<div id ="container"> 
+		  <div> 
+				<%= yield %>
+			</div> 
+		</div>
+	</div>
+</body>
+</html>

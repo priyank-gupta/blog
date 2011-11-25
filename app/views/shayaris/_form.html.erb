@@ -1,0 +1,35 @@
+<% content_for(:js_css) do %>
+  <%= stylesheet_link_tag 'post_shayari' %>
+  <%= javascript_include_tag 'post_shayari' %>
+<% end %>
+
+<%= form_for(@shayari) do |f| %>
+  <% if @shayari.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shayari.errors.count, "error") %> prohibited this shayari from being saved:</h2>
+
+      <ul>
+      <% @shayari.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<div>
+		<%= f.label :title %><br />
+		<%= f.text_field :title %>&nbsp;&nbsp;<span class='error'></span>
+			</div>
+				<div id="float_left">
+					<%= f.label :body, 'Post Your Shayari Here--' %><br />
+					<%= f.text_area :body, :rows => 15, :column => 50 %><br />
+					<span class='error'></span>
+				</div>
+				<div id="float_right">
+					<span class='error'></span><br/>
+					<%= f.select :category, Shayari::CATEGORIES, :prompt => 'Select a Category--' %>
+				</div><br/>
+				<div>
+					<%= f.submit 'Post' %>
+				</div>
+			</form>
+<% end %>

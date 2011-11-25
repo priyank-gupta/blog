@@ -1,0 +1,25 @@
+textarea {
+	resize: none;
+	scroll: auto;
+	font-family: arial narrow;
+}
+span.error {
+	font-size: 12px;
+	color: #F3444A;
+}
+div#float_left {
+	float:left;
+}
+div#float_right {
+	float:right;
+}
+h2 {
+	margin-top:0;
+	color: #8d3636;
+}
+div#rightside > form > div  {
+	margin-bottom: 10px;
+}
+div#float_left >textarea {
+	margin-right:20px;
+}
