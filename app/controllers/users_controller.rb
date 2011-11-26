@@ -16,14 +16,18 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(session[:user_id])
-    if(params[:category] && params[:category] != "All Categories")
-      @my_shayaris = Shayari.where('user_id=? and category=?', session[:user_id], params[:category]).order("updated_at DESC")
+    unless(params[:id].to_i === session[:user_id])
+      redirect_to(user_path(session[:user_id]))
     else
-      @my_shayaris = Shayari.where('user_id=?', session[:user_id]).order("updated_at DESC")
-    end
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
+      if(params[:category] && params[:category] != "All Categories")
+        @my_shayaris = Shayari.where('user_id=? and category=?', session[:user_id], params[:category]).order("updated_at DESC")
+      else
+        @my_shayaris = Shayari.where('user_id=?', session[:user_id]).order("updated_at DESC")
+      end
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @user }
+      end
     end
   end
 
