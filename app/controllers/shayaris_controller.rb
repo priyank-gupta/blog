@@ -2,8 +2,13 @@ class ShayarisController < ApplicationController
   # GET /shayaris
   # GET /shayaris.xml
   def index
-    @shayaris = Shayari.all
-
+   
+    if(params[:category] && params[:category] != "All Categories")
+      @shayaris = Shayari.where('category = ?', params[:category]).order('updated_at DESC')
+    else
+      @shayaris = Shayari.where('id != 0').order('updated_at DESC')
+    end
+    #p "#{@shayaris.each {|val| p val}} priyank"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @shayaris }
@@ -14,7 +19,7 @@ class ShayarisController < ApplicationController
   # GET /shayaris/1.xml
   def show
     @shayari = Shayari.find(params[:id])
-
+    @comments = @shayari.comments.recent.limit(10).all
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @shayari }
@@ -59,7 +64,10 @@ class ShayarisController < ApplicationController
   # PUT /shayaris/1.xml
   def update
     @shayari = Shayari.find(params[:id])
-
+    
+    unless(@shayari.user_id === session[:user_id])
+      redirect_to(shayaris_path)
+    end
     respond_to do |format|
       if @shayari.update_attributes(params[:shayari])
         format.html { redirect_to(@shayari, :notice => 'Shayari was successfully updated.') }

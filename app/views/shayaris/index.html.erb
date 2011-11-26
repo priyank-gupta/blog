@@ -1,29 +1,25 @@
-<h1>Listing shayaris</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Category</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @shayaris.each do |shayari| %>
-  <tr>
-    <td><%= shayari.title %></td>
-    <td><%= shayari.body %></td>
-    <td><%= shayari.category %></td>
-    <td><%= shayari.user_id %></td>
-    <td><%= link_to 'Show', shayari %></td>
-    <td><%= link_to 'Edit', edit_shayari_path(shayari) %></td>
-    <td><%= link_to 'Destroy', shayari, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<h2>All Shayaris</h2>
+<% content_for(:js_css) do %>
+  <%= stylesheet_link_tag 'my_shayaris' %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Shayari', new_shayari_path %>
+<div id='commentleft'>
+	<% unless(@shayaris != []) %>
+	  <p>No shayari posted in this category</p>
+	<% else %>
+	  <% @shayaris.each do |shayari|%>
+	    <div>
+	      <p><b>Title:&nbsp;&nbsp;</b><%= shayari.title %></p>
+	      <p><b>Category:</b>&nbsp;&nbsp;<%= shayari.category %></p>
+	      <div><b>Shayari:</b><br/><pre><%= truncate(shayari.body, :length => 40, :omission => "...") %></pre><p style="float:right">-<%= User.find_by_id(shayari.user_id).name.capitalize %></p><br/></div>
+	      <div id = "edit_del">
+	        <%= link_to 'Show', shayari_path(shayari) %>
+	      </div><br/>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+<div id='commentright'>
+  <%= form_tag(shayaris_path, :method => :get) do %>
+  <%= select_tag :category, options_for_select(Shayari::DISPLAY_CATEGORIES, params[:category]), {:onchange => "this.form.submit()"} %>
+  <% end %>
+</div><br/>

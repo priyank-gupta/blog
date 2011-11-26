@@ -1,25 +1,45 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
-  <%= @shayari.title %>
-</p>
-
-<p>
-  <b>Body:</b>
-  <%= @shayari.body %>
-</p>
+<% content_for(:js_css) do %>
+  <%= stylesheet_link_tag 'show_shayari' %>
+<% end %>
+<div id = "shayari_show">
+<h2><b>Title:</b>
+  <span><%= @shayari.title %></span>
+</h2>
 
 <p>
   <b>Category:</b>
-  <%= @shayari.category %>
+  <span><%= @shayari.category %></span>
 </p>
 
 <p>
-  <b>User:</b>
-  <%= @shayari.user_id %>
+  <b>Shayari:</b>
+  <span><pre><%= @shayari.body %></pre></span>
 </p>
 
-
-<%= link_to 'Edit', edit_shayari_path(@shayari) %> |
-<%= link_to 'Back', shayaris_path %>
+<fieldset>
+<legend>Comments</legend>
+<div id = "display_comments">
+<% @comments.each do |comment| %>
+  <p><b><%= User.find_by_id(comment.user_id).name %>:</b>&nbsp;&nbsp;<span><%= comment.comment %></span></p>
+  <% if comment.user_id === session[:user_id] %>
+    <% form_tag(shayari_comment_path(:id => comment,:shayari_id => params[:id]), :method => :delete) do %>
+      <%= image_submit_tag("comment_cancel.gif")%>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
+<div>
+<% form_tag(shayari_comments_path(params[:id])) do %>
+  <%= text_area_tag :comment,nil, :cols => 60, :rows => 2 %><br/>
+  <%= submit_tag("Comment") %>
+  <%= submit_tag("Clear", :type => "reset") %>
+<% end %>
+</div>
+</fieldset><br/>
+<div style = "float: right">
+<% if(@shayari.user_id === session[:user_id]) %>
+<%= link_to 'Edit', edit_shayari_path(@shayari) %> <span>|</span>
+<% end %>
+<%= link_to 'Back', :back %>
+</div><br/>
+</div>

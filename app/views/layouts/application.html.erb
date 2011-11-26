@@ -16,7 +16,7 @@
         <% end %>
       </div>
 		  <h1><span style="color: #700404">S</span><span style="color:#7e1d1d">h</span><span style="color:#8d3636">e</span><span style="color:#9b4f4f">r</span><span style="color:#9b4f4f">-</span><span style="color:#700404">O</span><span style="color:#9b4f4f">-</span><span style="color:#700404">S</span><span style="color:#7e1d1d">h</span><span style="color:#8d3636">a</span><span style="color:#9b4f4f">y</span><span style="color:#a96868">a</span><span style="color:#b88282">r</span><span style="color:#c69b9b">i</span></h1>
-		  <p id='welcome'>Hi! <%= User.find_by_id(session[:user_id]).name %></p><br/>
+		  <p id='welcome'>Hi! <%= User.find_by_id(session[:user_id]).name.capitalize %></p><br/>
     </div>
     <div id='leftside'>
 		  <div id='links'>
@@ -26,7 +26,7 @@
 			  <div class='leftlink' id='shayari'>
 				  <span id='waste'>Shayaris
 				  <ul id='to_hide'>
-					  <li><%= link_to("My Shayaris", shayaris_path) %></li>
+					  <li><%= link_to("My Shayaris", user_path(:id => session[:user_id])) %></li>
 					  <li><%= link_to("All Shayaris", shayaris_path) %></li>
 				  </ul></span>
 			  </div>
@@ -35,7 +35,7 @@
 	  </div>
 	  <div id ="rightside"> 
 		  <%= yield %>
-	  </div>
+	  </div><br/>
   </div>
 </body>
 </html>

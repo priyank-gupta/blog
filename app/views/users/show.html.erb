@@ -1,1 +1,27 @@
-<h1> Hello </h1>
+<% content_for(:js_css) do %>
+  <%= stylesheet_link_tag 'my_shayaris' %>
+<% end %>
+<div id='commentleft'>
+	<h2>My Shayaris</h2>
+	<% unless(@my_shayaris != []) %>
+	  <p>You have not posted any of your's in this category</p>
+	<% else %>
+	  <% @my_shayaris.each do |my_shayari|%>
+	    <div>
+	      <p><b>Title:&nbsp;&nbsp;</b><%= my_shayari.title %></p>
+	      <p><b>Category:</b>&nbsp;&nbsp;<%= my_shayari.category %></p>
+	      <div><b>Shayari:</b><br/><pre><%= truncate(my_shayari.body, :length => 40, :omission => "...") %></pre></div>
+	      <div id = "edit_del">
+	        <%= link_to 'Show', shayari_path(my_shayari) %>
+	        <%= link_to 'Edit', edit_shayari_path(my_shayari) %>
+<!--          <%= link_to 'Delete',my_shayari, :method => :delete %>    -->
+	      </div><br/>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+<div id='commentright'>
+  <%= form_tag(user_path, :id => session[:user_id], :method => :get) do %>
+  <%= select_tag :category, options_for_select(Shayari::DISPLAY_CATEGORIES, params[:category]), {:onchange => "this.form.submit()"} %>
+  <% end %>
+</div><br/>

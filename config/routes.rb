@@ -1,6 +1,8 @@
 PriyankBlog::Application.routes.draw do
   
-  resources :shayaris
+  resources :shayaris do
+    resources :comments
+  end
 
   resources :users
   

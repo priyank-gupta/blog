@@ -1,0 +1,23 @@
+div#shayari_show span{
+  color : #ffffff;
+}
+
+div#shayari_show pre{
+  color : #ffffff;
+  font-size: 14px;
+}
+
+div#display_comments p {
+  font-size : 14px;
+  font-style: italic;
+  margin-top : 1px;
+}
+
+div#display_comments span {
+  color: #ffffff;
+}
+
+div#display_comments form {
+  float:right;
+  margin-top: -30px;
+}

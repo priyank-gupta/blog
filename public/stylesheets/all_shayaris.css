@@ -1,0 +1,37 @@
+pre {
+	font-size :14px;
+}
+div#rightside textarea {
+	resize : none;
+}
+div#commentleft {
+	float:left;
+	width:470px;
+}
+div#commentright {
+	float:right;
+}
+div#commentleft > div > p:first-child {
+	font-size: 16px;
+}
+div#commentleft p {
+	font-size:14px;
+}
+div#commentleft fieldset {
+	padding-bottom: 3px;
+	margin-top:0;
+	margin-bottom:20px;
+}
+div#commentleft form {
+	margin: 0;
+}
+div#commentleft > div > div > p {
+	text-align: right;
+	font-size:14px;
+	font-style:italic;
+}
+h2 {
+	color:#8d3636;
+	margin-top:0;
+}
+	
