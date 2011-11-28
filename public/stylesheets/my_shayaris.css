@@ -1,5 +1,6 @@
 pre {
 	font-size :14px;
+	display : inline;
 }
 div#rightside textarea {
 	resize : none;
@@ -36,4 +37,5 @@ h2 {
 }
 div#edit_del {
 	float:right;
+	display: inline;
 }

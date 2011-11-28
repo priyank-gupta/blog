@@ -10,10 +10,7 @@
 	    <div>
 	      <p><b>Title:&nbsp;&nbsp;</b><%= shayari.title %></p>
 	      <p><b>Category:</b>&nbsp;&nbsp;<%= shayari.category %></p>
-	      <div><b>Shayari:</b><br/><pre><%= truncate(shayari.body, :length => 40, :omission => "...") %></pre><p style="float:right">-<%= User.find_by_id(shayari.user_id).name.capitalize %></p><br/></div>
-	      <div id = "edit_del">
-	        <%= link_to 'Show', shayari_path(shayari) %>
-	      </div><br/>
+	      <div><b>Shayari:</b>&nbsp;<pre><%= truncate(shayari.body, :length => 30, :omission => "...") %></pre><p style="float:right">-<%= User.find_by_id(shayari.user_id).name.capitalize %>&nbsp;&nbsp;<%= link_to 'Show', shayari_path(shayari) %></p><hr/></div>  
 			</div>
 		<% end %>
 	<% end %>
@@ -23,3 +20,4 @@
   <%= select_tag :category, options_for_select(Shayari::DISPLAY_CATEGORIES, params[:category]), {:onchange => "this.form.submit()"} %>
   <% end %>
 </div><br/>
+<p><%= will_paginate @shayaris %></p>

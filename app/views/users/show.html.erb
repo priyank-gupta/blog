@@ -10,12 +10,12 @@
 	    <div>
 	      <p><b>Title:&nbsp;&nbsp;</b><%= my_shayari.title %></p>
 	      <p><b>Category:</b>&nbsp;&nbsp;<%= my_shayari.category %></p>
-	      <div><b>Shayari:</b><br/><pre><%= truncate(my_shayari.body, :length => 40, :omission => "...") %></pre></div>
-	      <div id = "edit_del">
-	        <%= link_to 'Show', shayari_path(my_shayari) %>
-	        <%= link_to 'Edit', edit_shayari_path(my_shayari) %>
-<!--          <%= link_to 'Delete',my_shayari, :method => :delete %>    -->
-	      </div><br/>
+	      <div><b>Shayari:</b><pre><%= truncate(my_shayari.body, :length => 30, :omission => "...") %></pre>
+	        <div id = "edit_del">
+	          <%= link_to 'Show', shayari_path(my_shayari) %>
+	          <%= link_to 'Edit', edit_shayari_path(my_shayari) %>
+	        </div><hr/>
+	      </div>  
 			</div>
 		<% end %>
 	<% end %>
@@ -25,3 +25,4 @@
   <%= select_tag :category, options_for_select(Shayari::DISPLAY_CATEGORIES, params[:category]), {:onchange => "this.form.submit()"} %>
   <% end %>
 </div><br/>
+<p><%= will_paginate @my_shayaris %></p>

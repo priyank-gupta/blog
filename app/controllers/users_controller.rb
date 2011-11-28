@@ -20,9 +20,9 @@ class UsersController < ApplicationController
       redirect_to(user_path(session[:user_id]))
     else
       if(params[:category] && params[:category] != "All Categories")
-        @my_shayaris = Shayari.where('user_id=? and category=?', session[:user_id], params[:category]).order("updated_at DESC")
+        @my_shayaris = Shayari.where('user_id=? and category=?', session[:user_id], params[:category]).paginate :page => params[:page], :order => "updated_at DESC", :per_page => 5
       else
-        @my_shayaris = Shayari.where('user_id=?', session[:user_id]).order("updated_at DESC")
+        @my_shayaris = Shayari.where('user_id=?', session[:user_id]).paginate :page => params[:page], :order => "updated_at DESC", :per_page => 5
       end
       respond_to do |format|
         format.html # show.html.erb

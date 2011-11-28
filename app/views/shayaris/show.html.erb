@@ -21,7 +21,7 @@
 <div id = "display_comments">
 <% @comments.each do |comment| %>
   <p><b><%= User.find_by_id(comment.user_id).name %>:</b>&nbsp;&nbsp;<span><%= comment.comment %></span></p>
-  <% if comment.user_id === session[:user_id] %>
+  <% if comment.user_id === session[:user_id] || Shayari.find(comment.commentable_id).user_id === session[:user_id].to_i %>
     <% form_tag(shayari_comment_path(:id => comment,:shayari_id => params[:id]), :method => :delete) do %>
       <%= image_submit_tag("comment_cancel.gif")%>
     <% end %>

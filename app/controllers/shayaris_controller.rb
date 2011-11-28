@@ -4,9 +4,9 @@ class ShayarisController < ApplicationController
   def index
    
     if(params[:category] && params[:category] != "All Categories")
-      @shayaris = Shayari.where('category = ?', params[:category]).order('updated_at DESC')
+      @shayaris = Shayari.where('category = ?', params[:category]).paginate :page => params[:page], :order => 'updated_at DESC', :per_page => 5
     else
-      @shayaris = Shayari.where('id != 0').order('updated_at DESC')
+      @shayaris = Shayari.where('id != 0').paginate :page => params[:page], :order => 'updated_at DESC', :per_page => 5
     end
     #p "#{@shayaris.each {|val| p val}} priyank"
     respond_to do |format|

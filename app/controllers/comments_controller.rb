@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   
   def destroy
     comment = Comment.find(params[:id])
-    if (comment.user_id === session[:user_id])
+    if (comment.user_id === session[:user_id] || Shayari.find(comment.commentable_id).user_id === session[:user_id].to_i)
       comment.destroy
     end
     redirect_to(shayari_path(params[:shayari_id]))

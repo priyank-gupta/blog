@@ -88,3 +88,10 @@ div#commentleft p,div#commentleft pre {
 b {
 	color: #b88282;
 }
+.pagination span {
+  visibility: hidden;
+}
+.pagination em {
+  color :#6b8e23;
+  border-bottom: 2px solid #FFFFFF;
+}

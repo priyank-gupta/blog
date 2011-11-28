@@ -23,7 +23,7 @@ gem 'ruby-debug19', :require => 'ruby-debug'
 # gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
-
+gem 'will_paginate', '>= 3.0.pre'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
